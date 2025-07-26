@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Unemployment Rankings</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <h1>Unemployment Rankings</h1>
+    <h3><a href="https://www.linkedin.com/" target="_blank">LinkedIn</a> | <a href="https://www.naukri.com/" target="_blank">Naukri</a> | <a href="https://internshala.com/" target="_blank">Internshala</a></h3>
+    <div id="charts">
+        <div class="chart-grid">
+            <div class="chart-card" onclick="expandChart('./charts/top-users.png')">
+                <h3>Top Yappers</h3>
+                <img src="./charts/top-users.png" alt="Top Users Chart" />
+            </div>
+            <div class="chart-card" onclick="expandChart('./charts/top-words.png')">
+                <h3>Top Slop</h3>
+                <img src="./charts/top-words.png" alt="Top Words Chart" />
+            </div>
+        </div>
+    </div>
+    <h2>Top Yappers</h2>
+    <table id="userTable">
+        <thead>
+            <tr>
+                <th>Rank</th>
+                <th>Yapper</th>
+                <th>Messages</th>
+                <th>Slop</th>
+                <th>Avg Slop/Msg</th>
+                <th>Top Slop</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <div id="modal" class="modal" onclick="closeModal()">
+        <img id="modal-img" src="" alt="Expanded Chart">
+    </div>
+
+    <script>
+        async function loadData() {
+            const userStats = await fetch('user_stats.json').then(res => res.json());
+            const tbody = document.querySelector("#userTable tbody");
+
+            userStats.forEach(user => {
+                const tr = document.createElement("tr");
+                tr.innerHTML = `
+                    <td>${user.rank}</td>
+                    <td>${user.user}</td>
+                    <td>${user.messageCount}</td>
+                    <td>${user.totalWords}</td>
+                    <td>${user.avgWordsPerMessage}</td>
+                    <td>
+                        ${user.topWords.map(w => `<span class="badge">${w.word} (${w.count})</span>`).join(" ")}
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function expandChart(src) {
+            const modal = document.getElementById('modal');
+            const modalImg = document.getElementById('modal-img');
+            modalImg.src = src;
+            modal.classList.add('show');
+        }
+
+        function closeModal() {
+            document.getElementById('modal').classList.remove('show');
+        }
+
+        loadData();
+    </script>
+
+</body>
+
+</html>

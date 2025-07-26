@@ -1,0 +1,109 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #f7f7f7;
+    margin: 0;
+    padding: 20px;
+}
+
+h1,
+h2,
+h3 {
+    text-align: center;
+    color: #333;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    margin-top: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+th,
+td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #f0f0f0;
+}
+
+.badge {
+    display: inline-block;
+    background: #e0e7ff;
+    padding: 4px 8px;
+    margin: 2px;
+    border-radius: 5px;
+    font-size: 12px;
+}
+
+#charts {
+    margin-top: 40px;
+    text-align: center;
+}
+
+.chart-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    padding: 20px;
+}
+
+.chart-card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+    max-width: 380px;
+    width: 100%;
+    transition: transform 0.2s ease;
+    cursor: pointer;
+}
+
+.chart-card:hover {
+    transform: translateY(-5px);
+}
+
+.chart-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 6px;
+}
+
+/* Fullscreen modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.85);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal img {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 10px;
+}
+
+.modal.show {
+    display: flex;
+}
+
+.modal:after {
+    content: "×";
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 40px;
+    color: white;
+    cursor: pointer;
+}

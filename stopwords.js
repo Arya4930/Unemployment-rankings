@@ -1,0 +1,8 @@
+export default function stopWords() { 
+    return new Set([
+    'the', 'and', 'for', 'are', 'but', 'not', 'you', 'all', 'can', 'had', 'her', 'was', 'one', 'our', 'out', 'day', 'get', 'has', 'him', 'his', 'how', 'man', 'new', 'now', 'old', 'see', 'two', 'way', 'who', 'boy', 'did', 'its', 'let', 'put', 'say', 'she', 'too', 'use',
+    'that', 'with', 'have', 'this', 'will', 'your', 'from', 'they', 'know', 'want', 'been', 'good', 'much', 'some', 'time', 'very', 'when', 'come', 'here', 'just', 'like', 'long', 'make', 'many', 'over', 'such', 'take', 'than', 'them', 'well', 'were',
+    'what', 'would', 'there', 'could', 'other', 'after', 'first', 'never', 'these', 'think', 'where', 'being', 'every', 'great', 'might', 'shall', 'still', 'those', 'under', 'while', 'again', 'place', 'right', 'years', 'before', 'though', 'little', 'should', 'world',
+    'going', 'through', 'because', 'between', 'another', 'without', 'nothing', 'something', 'anything', 'everything', 'i', 'to', 'a', 'in', 'is', 'it', 'of', 'that', 'this', 'was', 'you', 'he', 'she', 'they', 'we', 'me', 'him', 'her', 'us', 'them',
+    'my', 'your', 'his', 'her', 'its', 'our', 'their', 'who', 'whom', 'which', 'what', 'where', 'when', 'why', 'how', 'all', 'any', 'each', 'few', 'more', 'most', 'other', 'some', 'such', 'no', 'nor', 'not', 'only', 'own', 'same', 'if', 'than', 'then', 'therefore', 'thus', 'yet', 'so', 'but', 'or', 'and', 'as', 'because', 'since', 'while', 'although', 'if', 'unless', 'until', 'whereas', 'whether'
+])}
