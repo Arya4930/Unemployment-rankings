@@ -1,190 +1,193 @@
-# 📊 WhatsApp Chat Analytics
+# 💀 Unemployment Rankings
 
-A comprehensive tool to analyze your WhatsApp chat exports and visualize the data through an interactive web dashboard.
+**The ultimate brainrot analyzer for your WhatsApp group chats** 🧠💀
 
-## 🚀 Features
+Find out who's the biggest yapper in your friend group and rank the unemployment levels based on chat activity. No cap! 📈
 
-- **Message Statistics**: Total messages, words, and user activity
-- **User Rankings**: Top users by message count and word usage
-- **Word Analysis**: Most frequently used words globally and per user
-- **Interactive Dashboard**: Modern web interface with charts and tables
-- **Export Data**: Generates JSON files for further analysis
+## 🔥 What This Slop Does
 
-## 📋 Prerequisites
+- **Yapping Statistics**: See who's been touching grass the least with total messages and word counts
+- **Unemployment Rankings**: Rank your friends by how terminally online they are
+- **Brainrot Analysis**: Most used words (probably "sigma", "ohio", or "skibidi")
+- **Interactive Dashboard**: Clean UI that doesn't look like it was made in 2010
+- **Export Receipts**: Save the data so you can roast your friends later
 
-- Node.js (version 14 or higher)
-- A WhatsApp chat export file
+## 📋 What You Need (Bare Minimum)
 
-## 🛠️ Installation
+- Node.js (if you don't have this, you're not ready for the grind)
+- Your WhatsApp chat export (the evidence)
+- Basic ability to follow instructions (optional)
 
-1. Clone or download this project
-2. Install dependencies:
+## 🛠️ Installation (Actually Easy)
+
+1. Download this absolute unit of a project
+2. Install the good stuff:
    ```bash
    npm install
    ```
 
-## 📱 Getting Your WhatsApp Chat Export
+## 📱 Getting Your Chat Export (The Receipts)
 
-### On Android:
+### On Android (Galaxy Brain Move):
+1. Open WhatsApp (duh)
+2. Go to the group chat where the yappers live
+3. Tap those three dots (⋮) → More → Export chat
+4. Choose "Without Media" (we don't need your cringe memes)
+5. Save it as `_chat.txt` in this folder
+
+### On iPhone (Mid Choice But OK):
 1. Open WhatsApp
-2. Go to the chat you want to analyze
-3. Tap the three dots (⋮) → More → Export chat
-4. Choose "Without Media" for faster processing
-5. Save the file as `_chat.txt` in the project directory
+2. Find your most unhinged group chat
+3. Tap the group name at the top
+4. Scroll down → "Export Chat"
+5. Pick "Without Media" 
+6. Save as `_chat.txt` where this README lives
 
-### On iPhone:
-1. Open WhatsApp
-2. Go to the chat you want to analyze
-3. Tap the contact/group name at the top
-4. Scroll down and tap "Export Chat"
-5. Choose "Without Media"
-6. Save the file as `_chat.txt` in the project directory
+## 🎯 How To Use This Beast
 
-## 🔧 Usage
+### Step 1: Analyze The Yappers
 
-### Step 1: Analyze Your Chat Data
-
-Run the analysis script to process your WhatsApp export:
+Run this bad boy to crunch the numbers:
 
 ```bash
 node index.js
 ```
 
-This will:
-- Read your `_chat.txt` file
-- Process all messages and calculate statistics
-- Generate chart images in the `charts/` folder
-- Create `user_stats.json` and `global_word_usage.json` files
-- Display comprehensive statistics in the terminal
+This script will:
+- Read your `_chat.txt` and judge everyone
+- Calculate who needs to touch grass the most
+- Generate some fire charts in the `charts/` folder
+- Create JSON files with all the tea ☕
+- Roast everyone in the terminal output
 
-### Step 2: View the Interactive Dashboard
+### Step 2: View The Unemployment Dashboard
 
-After running the analysis, you need to serve the HTML file locally to view the dashboard:
+After the analysis finishes cooking, serve up that HTML:
 
-#### Option A: Using Python (Recommended)
+#### Python Gang (Sigma Choice):
 ```bash
-# Python 3
+# Python 3 (based)
 python -m http.server 8000
 
-# Python 2
+# Python 2 (cringe but works)
 python -m SimpleHTTPServer 8000
 ```
 
-#### Option B: Using Node.js
+#### Node.js Bros:
 ```bash
 npx http-server
 ```
 
-#### Option C: Using PHP
+#### PHP Users (Questionable Life Choices):
 ```bash
 php -S localhost:8000
 ```
 
-Then open your browser and navigate to:
+Then open your browser and witness the carnage:
 ```
 http://localhost:8000
 ```
 
-## 📊 Dashboard Features
+## 📊 Dashboard Features (Actually Good)
 
-The web dashboard includes:
+Your unemployment dashboard includes:
 
-- **📈 Summary Statistics**: Total users, messages, words, and averages
-- **👥 User Activity Chart**: Bar chart showing message distribution
-- **💬 Word Usage Chart**: Most frequently used words
-- **🏆 Leaderboard Table**: Detailed user rankings with top words
+- **📈 Yapping Statistics**: Who needs to log off immediately
+- **👥 Unemployment Chart**: Visual representation of who's chronically online
+- **💬 Brainrot Words**: See what vocabulary your friends are destroying
+- **🏆 Hall of Shame**: Detailed rankings with receipts
 
-## ⚙️ Configuration
+## ⚙️ Fine-Tuning The Roast Machine
 
-You can modify the analysis parameters in `index.js`:
+Customize the dragging in `index.js`:
 
 ```javascript
 const CONFIG = {
-    chatFile: '_chat.txt',           // Chat export filename
-    topWordsCount: 10,               // Number of top words to show
-    topUserWordsCount: 5,            // Top words per user
-    topUserCount: 10,                // Number of top users
-    minWordLength: 0,                // Minimum word length
-    stopWords: stopWords()           // Common words to exclude
+    chatFile: '_chat.txt',           // Your evidence file
+    topWordsCount: 10,               // How many cringe words to expose
+    topUserWordsCount: 5,            // Favorite words per yapper
+    topUserCount: 10,                // How many unemployed friends to rank
+    minWordLength: 0,                // Filter out "fr" and "W"
+    stopWords: stopWords()           // Basic words that don't count
 };
 ```
 
-## 📁 File Structure
+## 📁 What's In This Folder
 
 ```
-whatsapp-analytics/
-├── index.js                 # Main analysis script
-├── stopwords.js             # Common words to exclude
-├── charts.js                # Chart generation utilities
-├── index.html               # Dashboard web page
-├── _chat.txt                # Your WhatsApp export (you provide this)
-├── user_stats.json          # Generated user statistics
-├── global_word_usage.json   # Generated word usage data
-└── charts/                  # Generated chart images
+unemployment-rankings/
+├── index.js                 # The main character (analysis script)
+├── stopwords.js             # Words too basic to count
+├── charts.js                # Makes the pretty pictures
+├── index.html               # The dashboard (actually clean)
+├── _chat.txt                # Your group's digital footprint
+├── user_stats.json          # The receipts (generated)
+├── global_word_usage.json   # Brainrot dictionary (generated)
+└── charts/                  # Visual evidence
     ├── top-users.png
     └── top-words.png
 ```
 
-## 🔍 Sample Output
+## 🔍 Sample Output (Prepare For Carnage)
 
-After running the analysis, you'll see terminal output like:
+After running the script, expect terminal output like:
 
 ```
-🎉 WhatsApp Chat Analysis Complete!
+🎉 Unemployment Analysis Complete! Time to touch grass!
 
 ============================================================
-📈 OVERALL STATISTICS
+📈 YAPPING STATISTICS
 ============================================================
-📱 Total Messages: 15,432
-💬 Total Words: 145,678
-👥 Active Users: 8
-📊 Average Words per Message: 9.4
+📱 Total Messages: 15,432 (y'all need hobbies)
+💬 Total Words: 145,678 (literal essays)
+👥 Unemployed Friends: 8
+📊 Average Words per Message: 9.4 (novels fr)
 
-👑 TOP USERS BY MESSAGE COUNT
+👑 TOP YAPPERS (HALL OF SHAME)
 ============================================================
-  1. alice_dev
-     📊 1,247 messages (8.1%)
+  1. alex_the_sigma
+     📊 1,247 messages (8.1%) - bro never sleeps
      💬 12,450 words total
-     📝 9.98 avg words/message
-     📏 45 words in longest message
-     🔥 Most used word: "function" (89x)
+     📝 9.98 avg words/message (writing dissertations)
+     📏 45 words in longest message (actual paragraph)
+     🔥 Most used word: "sigma" (89x) - down bad
 ```
 
-## 🚨 Privacy & Security
+## 🚨 Privacy Stuff (We're Not Sus)
 
-- **Your data stays local**: All processing happens on your machine
-- **No data is sent anywhere**: The tool works completely offline
-- **Clean your data**: Remove sensitive information from `_chat.txt` before analysis if needed
+- **Your data stays put**: Everything happens on your computer, no cap
+- **No snitching**: Nothing gets sent to the internet
+- **Clean your receipts**: Delete sensitive stuff from `_chat.txt` if you're paranoid
 
-## 🐛 Troubleshooting
+## 🐛 When Things Go Wrong (Skill Issue?)
 
-### "File not found" error
-- Ensure your WhatsApp export is named `_chat.txt`
-- Check that the file is in the same directory as `index.js`
+### "File not found" L
+- Make sure your chat export is actually named `_chat.txt`
+- Put it in the same folder as this README (reading comprehension check)
 
-### "Permission denied" when serving files
+### Can't serve the dashboard
 - Try a different port: `python -m http.server 3000`
-- Check if another application is using port 8000
+- Something else might be using port 8000 (common L)
 
-### Charts not displaying
-- Ensure you've run `node index.js` first to generate the data files
-- Check that `user_stats.json` and `global_word_usage.json` exist
+### Charts looking sus
+- Did you run `node index.js` first? (basic requirements)
+- Check if the JSON files actually exist (file explorer tutorial needed?)
 
-### Browser shows "Cannot load local resource"
-- You must use a local server (Python, Node.js, etc.)
-- Opening `index.html` directly in the browser won't work due to CORS restrictions
+### Browser showing "Cannot load" error
+- You NEED a local server, opening the HTML directly is a noob move
+- CORS will block you faster than your ex
 
-## 📝 Notes
+## 📝 Additional Notes (Actually Important)
 
-- The tool automatically filters out system messages (joins, leaves, media omitted, etc.)
-- URLs and mentions are cleaned from messages before word analysis
-- Stop words (common words like "the", "and", "is") are excluded from analysis
-- All processing is case-insensitive
+- Automatically filters out system messages (joins, leaves, "media omitted")
+- Cleans URLs and @ mentions before analysis (we're not doxxing anyone)
+- Ignores basic words like "the", "and", "is" (we want the good stuff)
+- Case doesn't matter (we're not grammar nazis)
 
-## 🤝 Contributing
+## 🤝 Want to Contribute?
 
-Feel free to submit issues, feature requests, or pull requests to improve this tool!
+Submit your improvements or roast our code. All feedback welcome (even if it's mid).
 
 ## 📄 License
 
-This project is open source and available under the MIT License.
+This project is open source under MIT License. Use it, modify it, whatever. Just don't sell it as an NFT.
