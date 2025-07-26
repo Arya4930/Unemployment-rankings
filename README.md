@@ -10,7 +10,6 @@ Find out who's the biggest yapper in your friend group and rank the unemployment
 - **Unemployment Rankings**: Rank your friends by how terminally online they are
 - **Brainrot Analysis**: Most used words (probably "sigma", "ohio", or "skibidi")
 - **Interactive Dashboard**: Clean UI that doesn't look like it was made in 2010
-- **Export Receipts**: Save the data so you can roast your friends later
 
 ## 📋 What You Need (Bare Minimum)
 
@@ -33,7 +32,7 @@ Find out who's the biggest yapper in your friend group and rank the unemployment
 2. Go to the group chat where the yappers live
 3. Tap those three dots (⋮) → More → Export chat
 4. Choose "Without Media" (we don't need your cringe memes)
-5. Save it as `_chat.txt` in this folder
+5. Export it and Save it as `_chat.txt` in this folder
 
 ### On iPhone (Mid Choice But OK):
 1. Open WhatsApp
@@ -41,7 +40,7 @@ Find out who's the biggest yapper in your friend group and rank the unemployment
 3. Tap the group name at the top
 4. Scroll down → "Export Chat"
 5. Pick "Without Media" 
-6. Save as `_chat.txt` where this README lives
+6. Export it and Save as `_chat.txt` where this README lives
 
 ## 🎯 How To Use This Beast
 
