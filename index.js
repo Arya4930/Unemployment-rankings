@@ -1,4 +1,5 @@
 import fs from 'fs';
+import path from 'path';
 import stopWords from './stopwords.js';
 import { saveBarChart } from './charts.js';
 
@@ -154,9 +155,18 @@ async function analyzeChat() {
         let totalMessages = 0;
         let totalWords = 0;
 
+        const dates = [];
         let match;
+
         while ((match = messageRegex.exec(chatText)) !== null) {
-            const [, date, time, ampm, sender, message] = match;
+            const [, rawDate, time, ampm, sender, message] = match;
+
+            const [day, month, year] = rawDate.split('/');
+            const formattedYear = year.length === 2 ? '20' + year : year;
+            const dateObj = new Date(`${formattedYear}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`);
+            if (!isNaN(dateObj)) {
+                dates.push(dateObj);
+            }
 
             if (isSystemMessage(message)) continue;
 
@@ -189,6 +199,16 @@ async function analyzeChat() {
             }
         }
 
+        const latestDate = dates.length
+            ? dates.reduce((latest, current) => current > latest ? current : latest)
+            : new Date();
+
+        const dateSuffix = latestDate.toISOString().split('T')[0];
+        const renamedChatFile = `${dateSuffix}-chat.txt`;
+
+        fs.renameSync(CONFIG.chatFile, renamedChatFile);
+        console.log(`📁 Renamed chat file to: ${renamedChatFile}`);
+
         for (const sender in userStats) {
             userStats[sender].avgWordsPerMessage =
                 Math.round((userStats[sender].totalWords / messageCounts[sender]) * 10) / 10;
@@ -196,35 +216,32 @@ async function analyzeChat() {
 
         displayResults(messageCounts, wordUsage, globalWordCount, userStats, totalMessages, totalWords);
 
-        // Ensure charts folder exists
         if (!fs.existsSync('charts')) fs.mkdirSync('charts');
 
-        // Save chart: Top users by message count
         const topUsers = Object.entries(messageCounts)
             .sort((a, b) => b[1] - a[1])
             .slice(0, CONFIG.topUserCount);
 
-        await saveBarChart(
-            topUsers.map(([user]) => user),
-            topUsers.map(([, count]) => count),
-            'Top Users by Message Count',
-            'top-users.png'
-        );
-
-        // Save chart: Most used global words
         const globalTopWords = Object.entries(globalWordCount)
             .sort((a, b) => b[1] - a[1])
             .slice(0, CONFIG.topWordsCount);
 
         await saveBarChart(
+            topUsers.map(([user]) => user),
+            topUsers.map(([, count]) => count),
+            'Top Users by Message Count',
+            `top-users-${dateSuffix}.png`
+        );
+
+        await saveBarChart(
             globalTopWords.map(([word]) => word),
             globalTopWords.map(([, count]) => count),
             'Most Used Words Globally',
-            'top-words.png'
+            `top-words-${dateSuffix}.png`
         );
 
         const allUserStats = Object.entries(messageCounts)
-            .sort((a, b) => b[1] - a[1]) // sort by message count
+            .sort((a, b) => b[1] - a[1])
             .map(([user, messageCount], index) => ({
                 rank: index + 1,
                 user,
@@ -236,10 +253,25 @@ async function analyzeChat() {
                 topWords: getTopWords(wordUsage[user], CONFIG.topUserWordsCount)
             }));
 
-        fs.writeFileSync('user_stats.json', JSON.stringify(allUserStats, null, 2), 'utf-8');
+        fs.mkdirSync(`data/${dateSuffix}`, { recursive: true });
+        fs.writeFileSync(`data/${dateSuffix}/user_stats.json`, JSON.stringify(allUserStats, null, 2), 'utf-8');
+        fs.writeFileSync(`data/${dateSuffix}/global_word_usage.json`, JSON.stringify(globalTopWords, null, 2), 'utf-8');
 
-        fs.writeFileSync('global_word_usage.json', JSON.stringify(globalTopWords, null, 2), 'utf-8');
+        let updatedDates = [];
+        const datesPath = 'available_dates.json';
 
+        if (fs.existsSync(datesPath)) {
+            try {
+                updatedDates = JSON.parse(fs.readFileSync(datesPath, 'utf-8'));
+            } catch (err) {
+                console.error('Failed to parse available-dates.json:', err);
+            }
+        }
+        if (!updatedDates.includes(dateSuffix)) {
+            updatedDates.push(dateSuffix);
+            updatedDates.sort((a, b) => new Date(b) - new Date(a));
+        }
+        fs.writeFileSync(datesPath, JSON.stringify(updatedDates, null, 2), 'utf-8');
     } catch (error) {
         console.error(`❌ Error analyzing chat: ${error.message}`);
     }

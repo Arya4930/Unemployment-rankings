@@ -107,3 +107,17 @@ th {
     color: white;
     cursor: pointer;
 }
+
+.rank-change {
+    font-size: 0.9em;
+    margin-left: 4px;
+    color: #888;
+}
+
+.rank-change.up {
+    color: green;
+}
+
+.rank-change.down {
+    color: red;
+}
