@@ -1,12 +1,8 @@
-*.txt
 # Ignore node_modules directory
 node_modules/
 
 # Ignore build output
 build/
-
-# Ignore Data of flights ( Available on Website soon )
-data/
 
 # Ignore IDE and editor files
 .vscode/
@@ -22,10 +18,6 @@ eng.traineddata
 .env.local
 .env.*.local
 
-# Ignore sensitive or personal files
-config.js
-secrets.json
-
 # Ignore compiled binaries or executables
 *.exe
 *.dll
@@ -34,7 +26,6 @@ secrets.json
 
 # Ignore data files such as .mp4, .png, .json, .xls etc.
 *.mp4
-*.png
 *.xlsx
 *.txt
 
