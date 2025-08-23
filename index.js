@@ -69,6 +69,36 @@ function getTopWords(wordCount, limit) {
         .map(([word, count]) => ({ word, count }));
 }
 
+async function unzip() {
+    try {
+        const currentDir = __dirname;
+        const files = fs.readdirSync(currentDir).filter(file => path.extname(file).toLowerCase() === '.zip');
+
+        if (files.length === 0) {
+            console.log('No ZIP files found in the current directory.');
+            return;
+        }
+        const zipFile = files[0];
+        const zipPath = path.join(currentDir, zipFile);
+
+        const directory = await unzipper.Open.file(zipPath);
+        const fileEntry = directory.files[0];
+        const outputPath = path.join(currentDir, fileEntry.path);
+
+        await new Promise((resolve, reject) => {
+            fileEntry
+                .stream()
+                .pipe(fs.createWriteStream(outputPath))
+                .on('finish', resolve)
+                .on('error', reject);
+        });
+        console.log(`Extracted: ${fileEntry.path}`);
+        fs.unlinkSync(zipPath);
+    } catch (error) {
+        console.error('Error extracting ZIP:', error);
+    }
+}
+
 function displayResults(messageCounts, wordUsage, globalWordCount, userStats, totalMessages, totalWords) {
     console.log('🎉 WhatsApp Chat Analysis Complete!\n');
     console.log('='.repeat(60));
@@ -142,6 +172,7 @@ async function analyzeChat() {
             console.error(`❌ Error: File '${CONFIG.chatFile}' not found!`);
             return;
         }
+        await unzip();
 
         console.log(`📱 Reading WhatsApp chat from: ${CONFIG.chatFile}\n`);
         const chatText = fs.readFileSync(CONFIG.chatFile, 'utf-8');
